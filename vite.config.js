@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
-import { resolve } from 'path';
+import { fileURLToPath, URL } from 'node:url';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,9 +8,7 @@ export default defineConfig({
   // Resolución de paths para imports más limpios
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
-      $lib: resolve(__dirname, 'src/lib'),
-      $components: resolve(__dirname, 'src/lib/components'),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 
@@ -24,13 +22,6 @@ export default defineConfig({
   build: {
     target: 'esnext',
     sourcemap: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['svelte'],
-        },
-      },
-    },
   },
 
   // Optimización de dependencias

@@ -12,8 +12,12 @@ dist
 dist-ssr
 *.local
 package-lock.json
-pnpm-lock.yaml
 yarn.lock
+
+# pnpm: aprobación local de build scripts (pnpm 10+), no debe llegar a Vercel
+# (Vercel usa pnpm 9.x, que interpreta este fichero como workspace inválido:
+# "packages field missing or empty")
+pnpm-workspace.yaml
 
 # Editor directories and files
 .vscode/*
